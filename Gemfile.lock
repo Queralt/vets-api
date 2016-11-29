@@ -6,6 +6,11 @@ GIT
     vets_json_schema (1.0.0)
       multi_json (~> 1.0)
 
+PATH
+  remote: /Users/vhaisfdawsoa/Documents/va/soliloquy
+  specs:
+    soliloquy (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -442,6 +447,7 @@ DEPENDENCIES
   sidekiq-scheduler (~> 2.0)
   sidekiq-unique-jobs
   simplecov (~> 0.11)
+  soliloquy!
   spring
   spring-commands-rspec
   statsd-instrument

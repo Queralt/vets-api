@@ -49,5 +49,19 @@ module VetsAPI
 
     config.middleware.use 'OliveBranch::Middleware'
     config.middleware.use 'StatsdMiddleware'
+
+    ActiveSupport::Logger.class_eval do
+      #monkey patching here so there aren't duplicate lines in console/server
+      def self.broadcast(logger)
+        Module.new do
+        end
+      end
+    end
+
+    %w(process_action start_processing).each do |evt|
+      ActiveSupport::Notifications.unsubscribe "#{evt}.action_controller"
+    end
+
+    Rails.logger = Soliloquy::Logger.new(STDOUT)
   end
 end
