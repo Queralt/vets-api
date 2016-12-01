@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'config_helper'
+require 'soliloquy'
 
 Rails.application.configure do
   # Specify environment specific hostname and protocol
@@ -47,5 +48,5 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   ConfigHelper.setup_action_mailer(config)
 
-  Rails.logger = Soliloquy::Logger.new(STDOUT, true, formatter: Soliloquy::Formatters::KeyValue)
+  config.logger = Soliloquy::Logger.new(STDOUT, formatter: Soliloquy::Formatters::KeyValue, highlight: true)
 end

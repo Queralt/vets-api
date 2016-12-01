@@ -19,6 +19,10 @@ class ApplicationController < ActionController::API
     raise Common::Exceptions::RoutingError, params[:path]
   end
 
+  def session_id
+    @session&.uuid
+  end
+
   # I'm commenting this out for now, we can put it back in if we encounter it
   # def action_missing(m, *_args)
   #   Rails.logger.error(m)

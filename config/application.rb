@@ -11,6 +11,7 @@ require 'action_mailer/railtie'
 # require "action_view/railtie"
 # require "sprockets/railtie"
 require_relative '../lib/statsd_middleware'
+require 'soliloquy'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -62,6 +63,6 @@ module VetsAPI
       ActiveSupport::Notifications.unsubscribe "#{evt}.action_controller"
     end
 
-    Rails.logger = Soliloquy::Logger.new(STDOUT)
+    config.logger = Soliloquy::Logger.new(STDOUT)
   end
 end
