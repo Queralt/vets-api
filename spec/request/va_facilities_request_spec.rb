@@ -7,6 +7,12 @@ RSpec.describe 'VA GIS Integration', type: :request do
   NY_BBOX = 'bbox[]=-73.401&bbox[]=40.685&bbox[]=-77.36&bbox[]=43.03'
   DEGEN_BBOX = 'bbox[]=-100&bbox[]=45&bbox[]=-100&bbox[]=45'
 
+  before(:all) do
+    VCR.use_cassette('facilities/va/bulk_load') do
+      get BASE_QUERY_PATH + PDX_BBOX
+    end
+  end
+
   it 'responds to GET #show for VHA prefix' do
     VCR.use_cassette('facilities/va/bulk_load') do
       get '/v0/facilities/va/vha_648A4'
