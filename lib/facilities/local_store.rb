@@ -44,7 +44,10 @@ module Facilities
       @mutex.synchronize do
         return unless Time.current > (@last_check + GIS_CHECK_FREQUENCY)
         last_edit = @client.last_edit_date
-        return if up_to_date?(last_edit)
+        if up_to_date?(last_edit)
+          @last_check = Time.current
+          return
+        end
         begin
           facilities = @client.fetch_all
           return if facilities.to_a.empty?
@@ -52,8 +55,6 @@ module Facilities
           index(facilities.map { |x| @adapter.from_gis x })
           @last_check = Time.current
           @current_gis_update = last_edit
-        rescue Facilities::Errors::ServiceError => e
-          log_error e
         rescue => e
           log_error e
         end
