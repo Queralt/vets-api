@@ -174,6 +174,19 @@ curl --header "Authorization: Token token=GvmkAW231VxGHkYxyppr2QQsi1D7PStqeiJXyy
 curl --header "Authorization: Token token=GvmkAW231VxGHkYxyppr2QQsi1D7PStqeiJXyyja" localhost:3001/v0/profile
 ```
 
+## Development Setup ( Docker )
+
+To run the api via docker from the root of the project run the following commands
+
+```
+docker-compose build
+docker-compse up
+```
+
+The API will then be available on port 3000 of the docker host.
+
+Environmental variables are defined in docker-compose.yml and can be overridden on the command line before the `docker-compose up` invocation
+
 ## Deployment Instructions
 
 Currently, this API is not yet in production. Ansible templates and instructions for deploying are in the [devops repo](https://github.com/department-of-veterans-affairs/devops/tree/master/ansible). The `app_name` for this project is `platform-api`. After deploying, you can check that the right version was deployed with:
